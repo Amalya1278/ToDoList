@@ -1,17 +1,20 @@
 import { TodoItem } from "./todo-item";
 
-export const List = ({ items, onDelete, onToggle }) => {
-    return (
-      <div className="space-y-4 bg-gray-100 p-4 rounded-lg shadow-md">
-        {items.map((todo) => (
+export const List = ({ items, onUpdate, onDelete }) => {
+  return (
+    <div className="space-y-2">
+      {items.length > 0 ? (
+        items.map((todo) => (
           <TodoItem
             key={todo.id}
             todo={todo}
+            onUpdate={onUpdate}
             onDelete={onDelete}
-            onToggle={onToggle}
           />
-        ))}
-      </div>
-    )
-  }
-  
+        ))
+      ) : (
+        <p className="text-center text-gray-500">No todos available</p>
+      )}
+    </div>
+  );
+};
